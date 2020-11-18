@@ -25,3 +25,14 @@ code {
     'Courier New',
     monospace;
 }
+
+input {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+ul,
+li {
+  list-style: none;
+}
