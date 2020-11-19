@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { TodoContext } from '../context/todo';
 import useInput from '../hooks/useInput';
 
 const Form: React.FC = () => {
   const [value, onChange, reset] = useInput();
+  const { addTodo } = useContext(TodoContext);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (value === '') return;
-    // eslint-disable-next-line no-console
-    console.log({ value });
+    addTodo(value);
     reset();
   };
   return (
