@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
-import { TodoContext } from '../context/todo';
 import useInput from '../hooks/useInput';
+import { Store } from '../context/reducer';
 
 const Form: React.FC = () => {
   const [value, onChange, reset] = useInput();
-  const { addTodo } = useContext(TodoContext);
+  const { state, dispatch } = useContext(Store);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (value === '') return;
-    addTodo(value);
+    dispatch({ type: 'ADD_TODO', payload: { id: state.length, title: value } });
     reset();
   };
   return (

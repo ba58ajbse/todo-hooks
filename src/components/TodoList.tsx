@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { TodoContext } from '../context/todo';
+import { Store } from '../context/reducer';
 import Todo from './Todo';
 
 type Todo = {
@@ -8,11 +8,11 @@ type Todo = {
 };
 
 const TodoList: React.FC = () => {
-  const { todoList } = useContext(TodoContext);
+  const { state } = useContext(Store);
 
   return (
     <ul className="todolist-wrapper">
-      {todoList.map((todo) => (
+      {state.map((todo) => (
         <Todo key={todo.id} todo={todo} />
       ))}
     </ul>
