@@ -13,6 +13,9 @@ const Todo: React.FC<Props> = ({ todo }) => {
         id={`todo-${todo.id}`}
         className="checkbox-done"
         checked={todo.completed}
+        onChange={() =>
+          dispatch({ type: 'TOGGLE_TODO_STATE', payload: { id: todo.id } })
+        }
       />
       <label htmlFor={`todo-${todo.id}`}>{todo.title}</label>
       <button

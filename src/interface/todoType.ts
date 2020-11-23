@@ -19,7 +19,12 @@ type RemoveTodoType = {
   payload: { id: number };
 };
 
-export type TodoActionType = AddTodoType | RemoveTodoType;
+type ToggleTodoStateType = {
+  type: 'TOGGLE_TODO_STATE';
+  payload: { id: number };
+};
+
+export type TodoActionType = AddTodoType | RemoveTodoType | ToggleTodoStateType;
 
 export type TodoProvider = {
   state: TodosState;

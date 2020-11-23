@@ -31,14 +31,22 @@ export const todoReducer = (
         ],
         nextTodoId: state.nextTodoId + 1,
       };
-    case 'REMOVE_TODO': {
+    case 'REMOVE_TODO':
       return {
         ...state,
         todoList: state.todoList.filter(
           (todo) => todo.id !== action.payload.id
         ),
       };
-    }
+    case 'TOGGLE_TODO_STATE':
+      return {
+        ...state,
+        todoList: state.todoList.map((todo) =>
+          todo.id === action.payload.id
+            ? { ...todo, completed: !todo.completed }
+            : todo
+        ),
+      };
     default:
       return state;
   }
