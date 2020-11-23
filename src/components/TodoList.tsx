@@ -1,18 +1,13 @@
 import React, { useContext } from 'react';
-import { TodoContext } from '../context/todo';
+import { TodosContext } from '../context/reducer';
 import Todo from './Todo';
 
-type Todo = {
-  id: number;
-  title: string;
-};
-
 const TodoList: React.FC = () => {
-  const { todoList } = useContext(TodoContext);
+  const { state } = useContext(TodosContext);
 
   return (
     <ul className="todolist-wrapper">
-      {todoList.map((todo) => (
+      {state.todoList.map((todo) => (
         <Todo key={todo.id} todo={todo} />
       ))}
     </ul>
