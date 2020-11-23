@@ -1,31 +1,36 @@
-import React, { createContext } from 'react';
+import { createContext } from 'react';
+import { TodosState, TodoActionType } from '../interface/todoType';
 
-export type TodoType = {
-  id: number;
-  title: string;
+export const initialTodosState: TodosState = {
+  todoList: [],
+  nextTodoId: 0,
 };
 
-export type ActionType = {
-  type: 'ADD_TODO';
-  payload: TodoType;
-};
-
-export const initialState: TodoType[] = [];
-
-export const Store = createContext(
+export const TodosContext = createContext(
   {} as {
-    state: TodoType[];
-    dispatch: React.Dispatch<ActionType>;
+    state: TodosState;
+    dispatch: React.Dispatch<TodoActionType>;
   }
 );
 
-export const reducer: React.Reducer<TodoType[], ActionType> = (
-  state: TodoType[],
-  action: ActionType
-) => {
+export const todoReducer = (
+  state: TodosState,
+  action: TodoActionType
+): TodosState => {
   switch (action.type) {
     case 'ADD_TODO':
-      return [...state, { id: action.payload.id, title: action.payload.title }];
+      return {
+        ...state,
+        todoList: [
+          ...state.todoList,
+          {
+            id: action.payload.id,
+            title: action.payload.title,
+            completed: false,
+          },
+        ],
+        nextTodoId: +1,
+      };
     default:
       return state;
   }
