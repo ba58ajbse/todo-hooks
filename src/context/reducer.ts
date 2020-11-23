@@ -29,8 +29,16 @@ export const todoReducer = (
             completed: false,
           },
         ],
-        nextTodoId: +1,
+        nextTodoId: state.nextTodoId + 1,
       };
+    case 'REMOVE_TODO': {
+      return {
+        ...state,
+        todoList: state.todoList.filter(
+          (todo) => todo.id !== action.payload.id
+        ),
+      };
+    }
     default:
       return state;
   }

@@ -9,10 +9,17 @@ export type TodosState = {
   nextTodoId: number;
 };
 
-export type TodoActionType = {
+type AddTodoType = {
   type: 'ADD_TODO';
   payload: { id: number; title: string };
 };
+
+type RemoveTodoType = {
+  type: 'REMOVE_TODO';
+  payload: { id: number };
+};
+
+export type TodoActionType = AddTodoType | RemoveTodoType;
 
 export type TodoProvider = {
   state: TodosState;

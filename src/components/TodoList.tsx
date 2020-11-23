@@ -7,9 +7,8 @@ const TodoList: React.FC = () => {
 
   return (
     <ul className="todolist-wrapper">
-      {state.todoList.map((todo) => (
-        <Todo key={todo.id} todo={todo} />
-      ))}
+      {state.todoList &&
+        state.todoList.map((todo) => <Todo key={todo.id} todo={todo} />)}
     </ul>
   );
 };
