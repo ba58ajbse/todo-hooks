@@ -2,13 +2,22 @@ import React, { useContext } from 'react';
 import { TodosContext } from '../context/reducer';
 
 type Props = {
-  todo: { id: number; title: string };
+  todo: { id: number; title: string; completed: boolean };
 };
 const Todo: React.FC<Props> = ({ todo }) => {
   const { dispatch } = useContext(TodosContext);
   return (
-    <li key={todo.id}>
-      <p>{todo.title}</p>
+    <li key={todo.id} className={todo.completed ? 'todo-row done' : 'todo-row'}>
+      <input
+        type="checkbox"
+        id={`todo-${todo.id}`}
+        className="checkbox-done"
+        checked={todo.completed}
+        onChange={() =>
+          dispatch({ type: 'TOGGLE_TODO_STATE', payload: { id: todo.id } })
+        }
+      />
+      <label htmlFor={`todo-${todo.id}`}>{todo.title}</label>
       <button
         type="button"
         className="remove-btn"
