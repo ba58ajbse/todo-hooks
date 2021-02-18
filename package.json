@@ -10,6 +10,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "gh-pages": "^3.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.0",
@@ -24,8 +25,11 @@
     "lint": "eslint src --ext .ts --ext .tsx",
     "lint:f": "eslint --fix src --ext .ts --ext .tsx",
     "lint:style": "stylelint src/assets/*.css",
-    "lint:style:f": "stylelint --fix src/assets/*.css"
+    "lint:style:f": "stylelint --fix src/assets/*.css",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
+  "homepage": "https://ba58ajbse.github.io/todo-hooks",
   "browserslist": {
     "production": [
       ">0.2%",
